@@ -12,7 +12,7 @@ public class Main {
         menu.start();
     }
 
-    public static void main(String[] args) {/*
+    public static void main(String[] args) {
         Menu menu = new Menu("Menu Name");
 
         List<String> header = new ArrayList<>();
@@ -78,15 +78,6 @@ public class Main {
             menu.start();
         });
 
-        menu.start();*/
-
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("Tag1,");
-        sb.append("Tag2,");
-
-        sb.deleteCharAt(sb.length()-1);
-
-        System.out.println(sb.toString());
+        menu.start();
     }
 }

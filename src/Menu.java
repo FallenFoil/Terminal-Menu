@@ -11,9 +11,9 @@ public class Menu{
     private Map<Integer, Trio> options;
     private List<String> data;
     private List<List<String>> table; // The List<String> is a line
-    private List<Integer> biggestsData;
+    private List<Integer> biggestData;
     private List<String> header;
-    private int min, max, step;
+    private int min, max, offset;
 
     public Menu(){
         this.nOptions = 1;
@@ -22,10 +22,10 @@ public class Menu{
         this.data = new ArrayList<>();
         this.header = new ArrayList<>();
         this.table = new ArrayList<>();
-        this.biggestsData = new ArrayList<>();
+        this.biggestData = new ArrayList<>();
         this.min = 0;
         this.max = 4;
-        this.step = 4;
+        this.offset = 4;
 
         populateAllSettings();
     }
@@ -38,10 +38,10 @@ public class Menu{
         this.data = new ArrayList<>();
         this.header = new ArrayList<>();
         this.table = new ArrayList<>();
-        this.biggestsData = new ArrayList<>();
+        this.biggestData = new ArrayList<>();
         this.min = 0;
         this.max = 4;
-        this.step = 4;
+        this.offset = 4;
 
         populateAllSettings();
     }
@@ -79,8 +79,8 @@ public class Menu{
         this.allSettings.put("framed", "\u001B[51m");
     }
 
-    public void setStep(int newStep){
-        this.step = newStep;
+    public void setOffset(int newStep){
+        this.offset = newStep;
     }
 
     public void setMin(int newMin){
@@ -91,8 +91,8 @@ public class Menu{
         this.max = newMax;
     }
 
-    public int getStep(){
-        return this.step;
+    public int getOffset(){
+        return this.offset;
     }
 
     public int getMin(){
@@ -104,23 +104,23 @@ public class Menu{
     }
 
     public void increaseMinMax(){
-        this.min += step;
-        this.max += step;
+        this.min += offset;
+        this.max += offset;
     }
 
     public void decreaseMinMax(){
-        if(this.min - step >= 0){
-            this.min -= step;
+        if(this.min - offset >= 0){
+            this.min -= offset;
         }
-        if(this.max - step >= step){
-            this.max -= step;
+        if(this.max - offset >= offset){
+            this.max -= offset;
         }
     }
 
     private int biggestsDataSum(){
         int res = 0;
 
-        for(Integer x : this.biggestsData){
+        for(Integer x : this.biggestData){
             res += x;
         }
 
@@ -131,8 +131,8 @@ public class Menu{
         if(!this.header.isEmpty()){
             int column=0;
             for(String str : this.header){
-                if(str.length() < this.biggestsData.get(column)) {
-                    this.header.set(column, str + " ".repeat(this.biggestsData.get(column) - str.length()));
+                if(str.length() < this.biggestData.get(column)) {
+                    this.header.set(column, str + " ".repeat(this.biggestData.get(column) - str.length()));
                 }
                 column++;
             }
@@ -141,8 +141,8 @@ public class Menu{
         for(List<String> line : this.table){
             int column=0;
             for(String str : line){
-                if(str.length() < this.biggestsData.get(column)){
-                    line.set(column, str + " ".repeat(this.biggestsData.get(column)-str.length()));
+                if(str.length() < this.biggestData.get(column)){
+                    line.set(column, str + " ".repeat(this.biggestData.get(column)-str.length()));
                 }
                 column++;
             }
@@ -164,7 +164,7 @@ public class Menu{
 
         //Table
         if(!this.header.isEmpty() || !this.table.isEmpty()){
-            int lineLength = 1 + (this.biggestsData.size() * 3) + biggestsDataSum();
+            int lineLength = 1 + (this.biggestData.size() * 3) + biggestsDataSum();
             String lineSeparator = "|" + "-".repeat(lineLength - 2) + "|\n";
             body.append(lineSeparator);
 
@@ -258,7 +258,7 @@ public class Menu{
 
         //Table
         if(!this.header.isEmpty() || !this.table.isEmpty()){
-            int lineLength = 1 + (this.biggestsData.size() * 3) + biggestsDataSum();
+            int lineLength = 1 + (this.biggestData.size() * 3) + biggestsDataSum();
             String lineSeparator = "|" + "-".repeat(lineLength - 2) + "|\n";
             body.append(lineSeparator);
 
@@ -389,9 +389,9 @@ public class Menu{
     }
 
     public void addTableData(List<String> newData){
-        if(this.biggestsData.isEmpty()){
+        if(this.biggestData.isEmpty()){
             for(int i=0; i<newData.size(); i++){
-                this.biggestsData.add(0);
+                this.biggestData.add(0);
             }
         }
 
@@ -399,8 +399,8 @@ public class Menu{
         List<String> list = new ArrayList<>();
 
         for(String str : newData){
-            if(str.length() > this.biggestsData.get(i)){
-                this.biggestsData.set(i, str.length());
+            if(str.length() > this.biggestData.get(i)){
+                this.biggestData.set(i, str.length());
             }
 
             list.add(str);
@@ -411,16 +411,16 @@ public class Menu{
     }
 
     public void addTableHeader(List<String> newHeader){
-        if(this.biggestsData.isEmpty()){
+        if(this.biggestData.isEmpty()){
             for(int i=0; i<newHeader.size(); i++){
-                this.biggestsData.add(0);
+                this.biggestData.add(0);
             }
         }
 
         int i = 0;
         for(String str : newHeader){
-            if(str.length() > this.biggestsData.get(i)){
-                this.biggestsData.set(i, str.length());
+            if(str.length() > this.biggestData.get(i)){
+                this.biggestData.set(i, str.length());
             }
 
             this.header.add(str);
@@ -434,10 +434,10 @@ public class Menu{
         this.data.clear();
         this.header.clear();
         this.table.clear();
-        this.biggestsData.clear();
+        this.biggestData.clear();
         this.min = 0;
         this.max = 4;
-        this.step = 4;
+        this.offset = 4;
     }
 
     public interface CallBack {
