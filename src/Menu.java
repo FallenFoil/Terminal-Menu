@@ -15,6 +15,13 @@ public class Menu{
     private List<String> header;
     private int min, max, offset;
 
+    /**
+     * Constructor that creates an empty menu object. 
+     * For the list with the elements for a table:
+     * the minimum is 0,
+     * the maximum is 4
+     * and the step that is taken when it goes to the next page is 4.
+     */
     public Menu(){
         this.nOptions = 1;
         this.allSettings = new HashMap<>();
@@ -30,6 +37,15 @@ public class Menu{
         populateAllSettings();
     }
 
+    /**
+     * Constructor that creates an empty menu object with a specific name. 
+     * For the list with the elements for a table:
+     * the minimum is 0,
+     * the maximum is 4
+     * and the offset that is taken when it goes to the next page is 4.
+     *
+     * @param newName The name for the menu.
+     */
     public Menu(String newName){
         this.name = newName;
         this.nOptions = 1;
@@ -79,35 +95,73 @@ public class Menu{
         this.allSettings.put("framed", "\u001B[51m");
     }
 
+    /**
+     * Sets the offset in the table pagination.
+     *
+     * @param newStep An int that represents the new offset.
+     */
     public void setOffset(int newStep){
         this.offset = newStep;
     }
 
+    /**
+     * Sets the minimum in the table pagination.
+     *
+     * @param newMin An int that represents the new minimum.
+     */
     public void setMin(int newMin){
         this.min = newMin;
     }
 
+    /**
+     * Sets the maximum in the table pagination
+     *
+     * @param newStep An int that represents the new maximum
+     */
     public void setMax(int newMax){
         this.max = newMax;
     }
 
+    /**
+     * Gets the offset in the table pagination.
+     *
+     * @return An int that represents the offset.
+     */
     public int getOffset(){
         return this.offset;
     }
 
+    /**
+     * Gets the minimum in the table pagination.
+     *
+     * @return An int that represents the minimum.
+     */
     public int getMin(){
         return this.min;
     }
 
+    /**
+     * Gets the maximum in the table pagination.
+     *
+     * @return An int that represents the maximum.
+     */
     public int getMax(){
         return this.max;
     }
 
+
+    /**
+     * Goes to the next page in the table pagination, by incrementing the minimum and maximum with offset
+     */
     public void increaseMinMax(){
         this.min += offset;
         this.max += offset;
     }
 
+
+    /**
+     * Goes to the previous page in the table pagination, by decreasing the minimum and maximum with offset.
+     */
     public void decreaseMinMax(){
         if(this.min - offset >= 0){
             this.min -= offset;
@@ -149,6 +203,14 @@ public class Menu{
         }
     }
 
+    /**
+     * Prints the Menu and starts a scanner to ask to the user for the menu option.
+     * The header consists in the name of the menu.
+     * If there is some data or an header in the table, it will be printed.
+     * Having the option, this method calls the option callback.
+     *
+     * @param newName The string that represents the menu name.
+     */
     public void start(String newName){
         //Header
         String asterisks = "*".repeat(Math.max(0, newName.length() * 3));
@@ -242,6 +304,12 @@ public class Menu{
         }
     }
 
+    /**
+     * Prints the Menu and starts a scanner to ask to the user for the menu option.
+     * The header consists in the name of the menu.
+     * If there is some data or an header in the table, it will be printed. If not, data lines will be printed if there are some.
+     * Having the option, this method calls the option callback.
+     */
     public void start(){
         //Header
         String asterisks = "*".repeat(Math.max(0, this.name.length() * 3));
@@ -363,12 +431,25 @@ public class Menu{
         return list;
     }
 
+    /**
+     * Adds an option to the menu.
+     *
+     * @param name The name of the option.
+     * @param callBack A implementation of method run of the interface CallBack. This implementation can be a lambda function/expression.
+     */
     public void addOption(String name, CallBack callBack){
         Trio trio = new Trio(name, null, callBack);
         this.options.put(this.nOptions, trio);
         this.nOptions++;
     }
 
+    /**
+     * Adds an option to the menu with settings.
+     *
+     * @param name The name of the option
+     * @param settings A string of setting to be used in this option.
+     * @param callBack A implementation of method run of the interface CallBack. This implementation can be a lambda function/expression.
+     */
     public void addOption(String name, String settings, CallBack callBack){
         List<String> map = parseOptions(settings);
         Trio trio;
@@ -384,10 +465,20 @@ public class Menu{
         }
     }
 
+    /**
+     * Adds a new data line to printed before the menu options.
+     *
+     * @param newData A string that represents a data line to be inserted.
+     */
     public void addData(String newData){
         this.data.add(newData);
     }
 
+    /**
+     * Adds a new row to the menu table.
+     *
+     * @param newData A list of String (row) to be added to the bottom of the table.
+     */
     public void addTableData(List<String> newData){
         if(this.biggestData.isEmpty()){
             for(int i=0; i<newData.size(); i++){
@@ -410,6 +501,11 @@ public class Menu{
         this.table.add(list);
     }
 
+    /**
+     * Adds the table header or replaces it if there is some already.
+     *
+     * @param newHeader A list of string that represents the header.
+     */
     public void addTableHeader(List<String> newHeader){
         if(this.biggestData.isEmpty()){
             for(int i=0; i<newHeader.size(); i++){
@@ -428,6 +524,9 @@ public class Menu{
         }
     }
 
+    /**
+     * Clears all user inserted data, except the name of the menu.
+     */
     public void clear(){
         this.nOptions = 1;
         this.options.clear();
