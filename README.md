@@ -10,7 +10,7 @@ The documentation was generated using the `javadoc` command and is in the **doc*
 
 ## Important notes
 
-If you want to print the menu after an option is selected, call the ´start()´ method.
+If you want to print the menu after an option is selected, call the `start()` method.
 
 
 ## Using custom appearance settings
