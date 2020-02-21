@@ -5,15 +5,15 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Menu{
-    private String name;
-    private int nOptions;
+    private String name; //Menu Name
+    private int nOptions; //Number of option in the menu
     private Map<String, String> allSettings; //All possible settings
-    private Map<Integer, Trio> options;
-    private List<String> data;
-    private List<List<String>> table; // The List<String> is a line
-    private List<Integer> biggestData;
-    private List<String> header;
-    private int min, max, offset;
+    private Map<Integer, Trio> options; //Map with all option. The key is the id (appearance order) of the option
+    private List<String> data; //A list of lines to be presented before the options
+    private List<List<String>> table; //A list of rows. Each row is a list of elements (String)
+    private List<Integer> biggestData; //A list of the size of the biggest words in each column, for indentation
+    private List<String> header; //A list of header columns
+    private int min, max, offset; //The min row, the max row, and the difference of both for the table pagination
 
     /**
      * Constructor that creates an empty menu object. 
