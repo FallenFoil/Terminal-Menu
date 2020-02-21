@@ -68,6 +68,10 @@ menu.addOption("Exit", ()->{
 menu.start();
 ```
 
+Output:
+
+![Example1](https://github.com/FallenFoil/TerminalMenu/blob/master/Example1.png)
+
 ### Example 2
 
 ```
@@ -92,6 +96,10 @@ menu.addOption("Exit", ()->{
 
 menu.start();
 ```
+
+Output:
+
+![Example2](https://github.com/FallenFoil/TerminalMenu/blob/master/Example2.png)
 
 ### Example 3
 
@@ -150,6 +158,10 @@ menu.addOption("Exit", ()->{
 menu.start();
 ```
 
+Output:
+
+![Example3](https://github.com/FallenFoil/TerminalMenu/blob/master/Example3.png)
+
 ### Exemple 4
 
 ```
@@ -171,3 +183,7 @@ menu.addOption("Exit", "exit", ()->{
 
 menu.start();
 ```
+
+Output:
+
+![Example4](https://github.com/FallenFoil/TerminalMenu/blob/master/Example4.png)
