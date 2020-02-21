@@ -62,6 +62,9 @@ public class Menu{
         populateAllSettings();
     }
 
+    /**
+     * Private method that populates the map "allSettings" with some appearance options
+     */
     private void populateAllSettings(){
         this.allSettings.put("reset", "\u001B[0m");
 
@@ -116,7 +119,7 @@ public class Menu{
     /**
      * Sets the maximum in the table pagination
      *
-     * @param newStep An int that represents the new maximum
+     * @param newMax An int that represents the new maximum
      */
     public void setMax(int newMax){
         this.max = newMax;
@@ -158,7 +161,6 @@ public class Menu{
         this.max += offset;
     }
 
-
     /**
      * Goes to the previous page in the table pagination, by decreasing the minimum and maximum with offset.
      */
@@ -171,6 +173,11 @@ public class Menu{
         }
     }
 
+    /**
+     * Calculates the sum of the biggest elements of each column
+     *
+     * @return the sum of the biggest elements
+     */
     private int biggestsDataSum(){
         int res = 0;
 
@@ -181,6 +188,9 @@ public class Menu{
         return res;
     }
 
+    /**
+     * Private method that adds spaces to each element of the table if there are some element bigger in the same column
+     */
     private void updateTableDataSpaces(){
         if(!this.header.isEmpty()){
             int column=0;
@@ -404,6 +414,13 @@ public class Menu{
         }
     }
 
+    /**
+     * Private method that parses the custom appearance settings
+     *
+     * @param settings A string with custom setting seperated by ";"
+     *
+     * @return A list with the appearance codes to be added before the option
+     */
     private List<String> parseOptions(String settings){
         String[] args = settings.split("[;]");
         List<String> list = new ArrayList<>();
@@ -539,29 +556,59 @@ public class Menu{
         this.offset = 4;
     }
 
+    /**
+     * Interface that permites to create an Callback to each option of the Menu
+     */
     public interface CallBack {
+        /**
+         * Method that will run when an option is chosen
+         */
         void run();
     }
 
+    /**
+     * Custom tuple to store an option name, list of settings and callback.
+     */
     static class Trio{
-        private final String name;
-        private final List<String> settings;
-        private final CallBack callback;
+        private final String name; //Option name
+        private final List<String> settings; //Option appearance settings
+        private final CallBack callback; //Option callback
 
+        /**
+         * Constructor that create Trio object, representing an option with a name, settings and callback
+         * @param newName Option name
+         * @param newSettings Option appearence settings
+         * @param newCallbacks Option callback
+         */
         Trio(String newName, List<String> newSettings, CallBack newCallbacks){
             this.name = newName;
             this.settings = newSettings;
             this.callback = newCallbacks;
         }
 
+        /**
+         * Gets the name of the Option
+         *
+         * @return name of the option
+         */
         String getName(){
             return this.name;
         }
 
+        /**
+         * Gets the appearance settings of an option
+         *
+         * @return A list of appearance settings
+         */
         List<String> getSettings(){
             return this.settings;
         }
 
+        /**
+         * Gets the option callback
+         *
+         * @return A Callback implemented object with the callback
+         */
         CallBack getCallback(){
             return this.callback;
         }
