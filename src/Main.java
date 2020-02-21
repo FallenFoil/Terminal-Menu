@@ -13,69 +13,20 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Menu menu = new Menu("Menu Name");
+        Menu menu = new Menu("TerminalMenu");
 
-        List<String> header = new ArrayList<>();
-        header.add("Id");
-        header.add("Title");
-        header.add("Author");
-        header.add("Year");
-        header.add("Tags");
-        header.add("NDownloads");
-        menu.addTableHeader(header);
-
-        List<String> list = new ArrayList<>();
-        list.add(Integer.toString(0));
-        list.add("Meu Amor");
-        list.add("Luis amcedo");
-        list.add("2001");
-        list.add("romance");
-        list.add(Integer.toString(174));
-        menu.addTableData(list);
-        list.clear();
-
-        list.add(Integer.toString(0));
-        list.add("Minha Vida");
-        list.add("Luis");
-        list.add("20013");
-        list.add("pop");
-        list.add(Integer.toString(1704));
-        menu.addTableData(list);
-        list.clear();
-
-        list.add(Integer.toString(0));
-        list.add("Meu Amor do meu coração");
-        list.add("Luis josé Macedo");
-        list.add("2019");
-        list.add("Pop,Jazz,Rock");
-        list.add(Integer.toString(1000000));
-        menu.addTableData(list);
-        list.clear();
-
-
-        menu.addOption("Next Page", "bold;color-blue", ()->{
-            menu.increaseMinMax();
+        menu.addOption("Option 1", "color = 255, 200, 200", ()->{
+            System.out.println("Option 1 selected");
             menu.start();
         });
 
-        menu.addOption("Previous Page", "italic;color-lime", ()->{
-            menu.decreaseMinMax();
+        menu.addOption("Option 2", "background-color = 255, 200, 200", ()->{
+            System.out.println("Option 2 selected");
             menu.start();
         });
 
-        menu.addOption("Option 3", "underline;", ()->{
-            System.out.println("Opção 3 selecionada");
-            menu.start();
-        });
-
-        menu.addOption("Option 4", "framed", ()->{
-            System.out.println("Opção 4 selecionada");
-            newMenu(menu);
-        });
-
-        menu.addOption("Option 5", ()->{
-            System.out.println("Opção 5 selecionada");
-            menu.start();
+        menu.addOption("Exit", "exit", ()->{
+            System.out.println("Exiting");
         });
 
         menu.start();
