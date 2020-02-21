@@ -8,6 +8,11 @@ A simple library for creating fancy terminal menus.
 
 The documentation was generated using the `javadoc` command and is in the **doc** folder.
 
+## Important notes
+
+If you want to print the menu after an option is selected, call the ´start()´ method.
+
+
 ## Using custom appearance settings
 
 The custom appearance settings consists in a string. Each setting is separated by **;**. All spaces are ignored, so feel free to use spaces as you like.
