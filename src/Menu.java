@@ -17,10 +17,7 @@ public class Menu{
 
     /**
      * Constructor that creates an empty menu object. 
-     * For the list with the elements for a table:
-     * the minimum is 0,
-     * the maximum is 4
-     * and the step that is taken when it goes to the next page is 4.
+     * The table pagination starts at element 0 and ends in element 4 with offset equal to 4.
      */
     public Menu(){
         this.nOptions = 1;
@@ -39,10 +36,7 @@ public class Menu{
 
     /**
      * Constructor that creates an empty menu object with a specific name. 
-     * For the list with the elements for a table:
-     * the minimum is 0,
-     * the maximum is 4
-     * and the offset that is taken when it goes to the next page is 4.
+     * The table pagination starts at element 0 and ends in element 4 with offset equal to 4.
      *
      * @param newName The name for the menu.
      */
@@ -215,7 +209,7 @@ public class Menu{
 
     /**
      * Prints the Menu and starts a scanner to ask to the user for the menu option.
-     * The header consists in the name of the menu.
+     * The header of the Menu consists in the name of the menu.
      * If there is some data or an header in the table, it will be printed.
      * Having the option, this method calls the option callback.
      *
@@ -316,7 +310,7 @@ public class Menu{
 
     /**
      * Prints the Menu and starts a scanner to ask to the user for the menu option.
-     * The header consists in the name of the menu.
+     * The header of the Menu  consists in the name of the menu.
      * If there is some data or an header in the table, it will be printed. If not, data lines will be printed if there are some.
      * Having the option, this method calls the option callback.
      */
