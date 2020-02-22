@@ -50,6 +50,8 @@ All possible settings:
 
 ## Examples
 
+The following blocks of code are litle examples using this library. Also there are one complete example of a simple ToDo aplication in **src** folder.
+
 
 ### Example 1
 
