@@ -1,28 +1,43 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
-    private static void newMenu(Menu menu){
-        menu.clear();
+public class Main{
+    private static void search(){
+        Menu menu = new Menu("TerminalMenu");
 
-        menu.addOption("Sair", ()->{
-            menu.start();
+        List<String> header = new ArrayList<>();
+        header.add("Key");
+        header.add("Property");
+
+        menu.addTableHeader(header);
+
+        List<String> list = new ArrayList<>();
+        list.add("os.name");
+        list.add(System.getProperty("os.name"));
+        menu.addTableData(list);
+        list.clear();
+
+        list.add("os.arch");
+        list.add(System.getProperty("os.arch"));
+        menu.addTableData(list);
+        list.clear();
+
+        list.add("os.version");
+        list.add(System.getProperty("os.version"));
+        menu.addTableData(list);
+
+        menu.addOption("Back", ()->{
+            mainMenu();
         });
 
         menu.start();
     }
 
-    public static void main(String[] args) {
+    public static void mainMenu(){
         Menu menu = new Menu("TerminalMenu");
 
-        menu.addOption("Option 1", "color = 255, 200, 200", ()->{
-            System.out.println("Option 1 selected");
-            menu.start();
-        });
-
-        menu.addOption("Option 2", "background-color = 255, 200, 200", ()->{
-            System.out.println("Option 2 selected");
-            menu.start();
+        menu.addOption("Search", ()->{
+            search();
         });
 
         menu.addOption("Exit", "exit", ()->{
@@ -30,5 +45,9 @@ public class Main {
         });
 
         menu.start();
+    }
+
+    public static void main(String[] args) {
+        mainMenu();
     }
 }
