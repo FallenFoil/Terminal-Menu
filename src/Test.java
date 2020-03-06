@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main{
+public class Test{
     private static void search(){
         Menu menu = new Menu("TerminalMenu");
 
